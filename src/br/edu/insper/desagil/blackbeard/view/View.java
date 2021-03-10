@@ -27,8 +27,10 @@ public class View extends JTabbedPane {
 		this.addTab("Disciplinas", disciplinaView);
 		this.addTab("Oferecimentos", oferecimentoView);
 		this.addTab("Matriculas", matriculaView);
-	}
 
+		this.setPreferredSize(new Dimension(500, 500));
+	}
+/*
 	@Override
 	public Dimension getPreferredSize() {
 		int tabsWidth = 0;
@@ -39,4 +41,5 @@ public class View extends JTabbedPane {
         size.width = Math.max(size.width, tabsWidth);
         return size;
 	}
+*/
 }
