@@ -33,4 +33,8 @@ public class Disciplina {
 	public void setEmenta(List<String> ementa) {
 		this.ementa = ementa;
 	}
+
+	public String toString() {
+		return this.codigo + ": " + this.nome;
+	}
 }
