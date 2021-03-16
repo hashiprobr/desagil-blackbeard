@@ -29,4 +29,13 @@ public class Oferecimento {
 		Matricula matricula = new Matricula(aluno);
 		this.matriculas.add(matricula);
 	}
+
+	public boolean temMatricula(int id) {
+		for (Matricula matricula: this.matriculas) {
+			if (matricula.getAluno().getId() == id) {
+				return true;
+			}
+		}
+		return false;
+	}
 }

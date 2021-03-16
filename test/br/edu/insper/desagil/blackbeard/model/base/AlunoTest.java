@@ -18,4 +18,9 @@ class AlunoTest {
 		assertEquals(1, aluno.getId());
 		assertEquals("João", aluno.getNome());
 	}
+
+	@Test
+	public void testToString() {
+		assertEquals("1: João", aluno.toString());
+	}
 }

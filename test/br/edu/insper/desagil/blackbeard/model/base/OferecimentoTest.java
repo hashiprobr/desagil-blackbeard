@@ -1,6 +1,7 @@
 package br.edu.insper.desagil.blackbeard.model.base;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -28,5 +29,11 @@ class OferecimentoTest {
 		assertEquals("Design de Software", oferecimento.getDisciplina().getNome());
 		assertEquals(expectedEmenta, oferecimento.getDisciplina().getEmenta());
 		assertEquals(expectedPlano, oferecimento.getPlano());
+	}
+
+	@Test void testUmaMatricula() {
+		Aluno aluno = new Aluno(1, "João");
+		oferecimento.matricula(aluno);
+		assertTrue(oferecimento.temMatricula(1));
 	}
 }

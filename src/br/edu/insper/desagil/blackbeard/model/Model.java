@@ -1,15 +1,17 @@
 package br.edu.insper.desagil.blackbeard.model;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import br.edu.insper.desagil.blackbeard.model.base.Aluno;
 import br.edu.insper.desagil.blackbeard.model.base.Disciplina;
 import br.edu.insper.desagil.blackbeard.model.base.Oferecimento;
 
 public class Model {
-	private List<Aluno> alunos;
-	private List<Disciplina> disciplinas;
+	private Map<Integer, Aluno> alunos;
+	private Map<String, Disciplina> disciplinas;
 	private List<Oferecimento> oferecimentos;
 
 	private List<AlunoListener> alunoListeners;
@@ -18,8 +20,8 @@ public class Model {
 	private List<MatriculaListener> matriculaListeners;
 
 	public Model() {
-		this.alunos = new ArrayList<>();
-		this.disciplinas = new ArrayList<>();
+		this.alunos = new HashMap<>();
+		this.disciplinas = new HashMap<>();
 		this.oferecimentos = new ArrayList<>();
 
 		this.alunoListeners = new ArrayList<>();
@@ -35,11 +37,25 @@ public class Model {
 	 *
 	 */
 
+	public Aluno getAluno(int id) {
+		if (this.alunos.containsKey(id)) {
+			return this.alunos.get(id);
+		}
+		return null;
+	}
+
+	public Disciplina getDisciplina(String codigo) {
+		if (this.disciplinas.containsKey(codigo)) {
+			return this.disciplinas.get(codigo);
+		}
+		return null;
+	}
+
 	public Aluno adicionaAluno(int id, String nome) {
 		Aluno aluno = null;
 		if (id > 0 && !nome.isBlank()) {
 			aluno = new Aluno(id, nome);
-			this.alunos.add(aluno);
+			this.alunos.put(id, aluno);
 		}
 		return aluno;
 	}
@@ -48,7 +64,7 @@ public class Model {
 		Disciplina disciplina = null;
 		if (!codigo.isBlank() && !nome.isBlank()) {
 			disciplina = new Disciplina(codigo, nome);
-			this.disciplinas.add(disciplina);
+			this.disciplinas.put(codigo, disciplina);
 		}
 		return disciplina;
 	}
