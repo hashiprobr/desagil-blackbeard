@@ -4,22 +4,16 @@ public class Matricula {
 	private Aluno aluno;
 	private boolean trancada;
 
-	public Matricula(Aluno aluno, boolean trancada) {
+	public Matricula(Aluno aluno) {
 		this.aluno = aluno;
-		this.trancada = trancada;
+		this.trancada = false;
 	}
 
 	public Aluno getAluno() {
 		return this.aluno;
 	}
-	public void setAluno(Aluno aluno) {
-		this.aluno = aluno;
-	}
 
 	public boolean isTrancada() {
 		return this.trancada;
-	}
-	public void setTrancada(boolean trancada) {
-		this.trancada = trancada;
 	}
 }

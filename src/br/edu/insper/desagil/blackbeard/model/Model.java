@@ -1,14 +1,10 @@
 package br.edu.insper.desagil.blackbeard.model;
 
 import java.util.ArrayList;
-import java.util.Date;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import br.edu.insper.desagil.blackbeard.model.base.Aluno;
 import br.edu.insper.desagil.blackbeard.model.base.Disciplina;
-import br.edu.insper.desagil.blackbeard.model.base.Matricula;
 import br.edu.insper.desagil.blackbeard.model.base.Oferecimento;
 
 public class Model {
@@ -51,8 +47,7 @@ public class Model {
 	public Disciplina adicionaDisciplina(String codigo, String nome) {
 		Disciplina disciplina = null;
 		if (!codigo.isBlank() && !nome.isBlank()) {
-			List<String> ementa = new ArrayList<>();
-			disciplina = new Disciplina(codigo, nome, ementa);
+			disciplina = new Disciplina(codigo, nome);
 			this.disciplinas.add(disciplina);
 		}
 		return disciplina;
@@ -61,9 +56,7 @@ public class Model {
 	public Oferecimento adicionaOferecimento(Disciplina disciplina) {
 		Oferecimento oferecimento = null;
 		if (disciplina != null) {
-			Map<Date, String> plano = new HashMap<>();
-			List<Matricula> matriculas = new ArrayList<>();
-			oferecimento = new Oferecimento(disciplina, plano, matriculas);
+			oferecimento = new Oferecimento(disciplina);
 			this.oferecimentos.add(oferecimento);
 		}
 		return oferecimento;
@@ -73,8 +66,7 @@ public class Model {
 		Oferecimento oferecimento = null;
 		if (aluno != null && i > -1) {
 			oferecimento = this.oferecimentos.get(i);
-			Matricula matricula = new Matricula(aluno, false);
-			oferecimento.getMatriculas().add(matricula);
+			oferecimento.matricula(aluno);
 		}
 		return oferecimento;
 	}
