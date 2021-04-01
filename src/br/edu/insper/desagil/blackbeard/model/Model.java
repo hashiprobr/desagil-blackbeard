@@ -42,6 +42,11 @@ public class Model {
 	public Aluno adicionaAluno(int id, String nome) {
 		Aluno aluno = null;
 		if (id > 0 && !nome.isBlank()) {
+			for (Aluno existente : this.alunos) {
+				if (existente.getId() == id) {
+					return null;
+				}
+			}
 			aluno = new Aluno(id, nome);
 			this.alunos.add(aluno);
 		}
@@ -49,9 +54,14 @@ public class Model {
 	}
 
 	public Disciplina adicionaDisciplina(String codigo, String nome) {
+		List<String> ementa = new ArrayList<>();
 		Disciplina disciplina = null;
 		if (!codigo.isBlank() && !nome.isBlank()) {
-			List<String> ementa = new ArrayList<>();
+			for (Disciplina existente : this.disciplinas) {
+				if (existente.getCodigo().equals(codigo)) {
+					return null;
+				}
+			}
 			disciplina = new Disciplina(codigo, nome, ementa);
 			this.disciplinas.add(disciplina);
 		}
@@ -73,8 +83,14 @@ public class Model {
 		Oferecimento oferecimento = null;
 		if (aluno != null && i > -1) {
 			oferecimento = this.oferecimentos.get(i);
+			List<Matricula> matriculas = oferecimento.getMatriculas();
+			for (Matricula existente : matriculas) {
+				if (existente.getAluno().getId() == aluno.getId()) {
+					return null;
+				}
+			}
 			Matricula matricula = new Matricula(aluno, false);
-			oferecimento.getMatriculas().add(matricula);
+			matriculas.add(matricula);
 		}
 		return oferecimento;
 	}
